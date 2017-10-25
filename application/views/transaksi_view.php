@@ -21,7 +21,8 @@
 		<div class="panel-body">
 
 		  <button type="button" id="btnSave" onclick="add_transaksi()" class="btn btn-primary">Tambah Transaksi</button><br><br>
-        
+     
+       
 		 
 		    <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
@@ -34,12 +35,15 @@
                 </tr>
             </thead>
             <tbody>
+            
             	<?php $no = 1; $kode; foreach ($transaksi as $transaksi) { ?>            	
             	<tr>
             		<td><?= $no++ ?></td>
             		<td><?= $transaksi->kd_transaksi?></td>
             		<td><? $query = $this->db->query("select * from transaksi_detail inner join barang on transaksi_detail.kd_barang =  barang.kd_barang where kd_transaksi='$transaksi->kd_transaksi'  ORDER BY transaksi_detail.kd_barang ASC "); foreach($query->result() as $d){
-                           echo $d->kd_barang."=".$d->nama_barang."<br>" ;
+                           
+                           echo $d->nama_barang."<br>" ;
+
                         }?></td>
             		<td>
             			
@@ -47,7 +51,7 @@
                        <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="delete_transaksi('<?=$transaksi->kd_transaksi?>')" title="Hapus"><i class="fa fa-remove"></i>Hapus</a>
                     </td>
             	</tr>
-            	<?php } ?>
+            	<?php }   ?>
             </tbody>
 
             <tfoot>
@@ -58,12 +62,13 @@
             </tr>
             </tfoot>
         </table>
-
+                   
 		</div>
 	</div>
 
 </div>
 <?php $this->load->view('modal_transaksi')?>
+
 <script>
   $(document).ready(function() {
   $('#table').DataTable({});

@@ -13,7 +13,7 @@ class Transaksi extends CI_Controller {
 			$this->session->sess_destroy();
 			redirect('auth');
 		}
-		
+		$this->load->helper('apriori_helper');
 
 		$this->load->model('transaksi_model');
 		$this->load->model('barang_model');
@@ -24,14 +24,18 @@ class Transaksi extends CI_Controller {
 	{
 		$data['transaksi'] = $this->transaksi_model->read_all_transaksi();
 		$data['barang'] = $this->barang_model->read_all();
+		
 		$this->load->view('transaksi_view', $data);
 	}
 
 	public function store(){
 		//$kdbarang = implode(", ", $this->input->post('kd_barang'));
 		 $kdbarang= $this->input->post('kd_barang');
-		
+		 $separate = explode('/', $this->input->post('tgl'));
+		 $date = $separate[2]."-".$separate[0]."-".$separate[1];
+
 		 $data =  array('kd_transaksi' => $this->input->post('kd_transaksi') ,
+		 				'tanggal_transaksi' => $date
 
 			 );
 		 for ($i=0; $i < count($kdbarang); $i++) { 
@@ -52,6 +56,7 @@ class Transaksi extends CI_Controller {
 		
 	}
 
+	
 	public function edit($id){
 
 	}

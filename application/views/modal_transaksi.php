@@ -18,12 +18,21 @@
                          <input type="hidden" value="" name="harga">
                             <label class="control-label col-md-3">kode Transaksi</label>
                             <div class="col-md-9">
-                                <input name="kd_transaksi"  placeholder="Kode Transaksi" class="form-control" type="text" >
+                                <input name="kd_transaksi"  value="SRV." class="form-control" type="text" >
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         
+                        <div class="form-group">
+                         <input type="hidden" value="" name="harga">
+                            <label class="control-label col-md-3">Tanggal</label>
+                            <div class="col-md-9">
+                                <input name="tgl"  id="datepicker" placeholder="Tanggal" class="form-control" type="text" >
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
 
+                        
                          <div class="form-group" id="dynamicInput">
                             <label class="control-label col-md-3">Barang</label>
                              <div class="col-md-9">

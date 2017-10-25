@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 
 		$this->load->library(array('session', 'form_validation'));
+		$this->load->helper('apriori_helper');
 		   
 		if ($this->session->userdata('username')=="" ) {
 			$this->session->sess_destroy();
@@ -15,14 +16,19 @@ class Dashboard extends CI_Controller {
 		}
 		
 
-		//$this->load->model('transaksi_model');
+		$this->load->helper('apriori_helper');
 		
 		
 	}
 
 	public function index()
 	{
-		$this->load->view('dashboard_view');
+		$data['a'] = test();
+		$this->load->view('dashboard_view', $data);
+	}
+
+	public function date(){
+		$this->load->view('datetimpicker');
 	}
 
 	

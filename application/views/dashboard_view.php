@@ -21,6 +21,7 @@
 		<div class="panel-body">
 		<h3>Jumlah Data Barang : </h3>
 		<h3>Jumlah Data Penjualan: </h3>
+		
 
 		</div>
 	</div>
