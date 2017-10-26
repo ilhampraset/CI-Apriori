@@ -85,7 +85,7 @@
 
               var newdiv = document.createElement('div');
 
-              newdiv.innerHTML =   "<div class='form-group'>" +"<label class='control-label col-md-3'></label>"+" <div class='col-md-9'><br> <select name='kd_barang[]' class='form-control'> <?php foreach($barang as $barang){ ?><option value='<?= $barang->kd_barang ?>'><?= $barang->nama_barang?></option><?php } ?></select> </div>";
+              newdiv.innerHTML =   "<div class='form-group'>" +"<label class='control-label col-md-3'></label>"+" <div class='col-md-9'><br> <select name='kd_barang[]' class='form-control'> <?php foreach($barang as $barang){ ?><option value='<?= $barang->nama_barang ?>'><?= $barang->nama_barang?></option><?php } ?></select> </div>";
 
               document.getElementById(divName).appendChild(newdiv);
 
