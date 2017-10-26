@@ -83,8 +83,8 @@ class Apriori {
        $num = count($db);  
        for($i=0; $i<$num; $i++) 
           {
-            // $tmp  = $db[$i];
-            $tmp  = explode($this->delimiter, $db[$i]);
+             $tmp  = $db[$i];
+            //$tmp  = explode($this->delimiter, $db[$i]);
              $num1 = count($tmp);
              $x    = array();
              for($j=0; $j<$num1; $j++) 
@@ -494,7 +494,7 @@ class Apriori {
                 { 
                    echo "
                    <tr>
-                   <td>jika membeli $a maka disarankan membeli $b</td>  <td> $conf%</td>
+                   <td>jika membeli <b>$a</b> maka disarankan membeli <b>$b</> maka mendapatkan discount 30%</td>  <td> $conf%</td>
                    <tr>
                    ";
                 }

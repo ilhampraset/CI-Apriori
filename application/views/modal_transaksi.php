@@ -10,7 +10,7 @@
                 <h3 class="modal-title">Book Form</h3>
             </div>
             <div class="modal-body form">
-                <form method="POST" id="form" action="<?= base_url('transaksi/store') ?>" >
+                <form method="POST" id="form">
               
 
                      <div class="form-body">

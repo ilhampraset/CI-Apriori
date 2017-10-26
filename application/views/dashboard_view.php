@@ -19,8 +19,12 @@
 <div class="container-fluid">
 	<div class="panel panel-default">
 		<div class="panel-body">
-		<h3>Jumlah Data Barang : </h3>
-		<h3>Jumlah Data Penjualan: </h3>
+		<?
+			$barang = $this->db->query(" SELECT * FROM barang ");
+			$transaksi = $this->db->query(" SELECT * FROM transaksi_master "); 
+		?>
+		<h3>Jumlah Data Barang : <?= count($barang->result())?></h3>
+		<h3>Jumlah Data Penjualan: <?= count($transaksi->result()) ?> </h3>
 		
 
 		</div>

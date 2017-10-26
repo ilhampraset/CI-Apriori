@@ -29,42 +29,23 @@ class Transaksi extends CI_Controller {
 	}
 
 	public function store(){
-		$kdbarang = implode(", ", $this->input->post('kd_barang'));
-		 //$kdbarang= $this->input->post('kd_barang');
-		 $separate = explode('/', $this->input->post('tgl'));
-		 $date = $separate[2]."-".$separate[0]."-".$separate[1];
-
-		 /*$data =  array('kd_transaksi' => $this->input->post('kd_transaksi') ,
-		 				'tanggal_transaksi' => $date
-
+		//$kdbarang = implode(", ", $this->input->post('kd_barang'));
+		 $kdbarang= $this->input->post('kd_barang');
+		
+		 $data =  array('kd_transaksi' => $this->input->post('kd_transaksi') ,
 			 );
 		 for ($i=0; $i < count($kdbarang); $i++) { 
 		 	
 		 	$data2 =  array('kd_transaksi' => $this->input->post('kd_transaksi') ,
 						'kd_barang' => $kdbarang[$i],
-
 			 );
 		 	//$query $this->db->query()
 		//	
 			$this->transaksi_model->create_transaksi('transaksi_detail', $data2);
-		 }*/
-
-	 
-		 	
+		 }
+		$this->transaksi_model->create_transaksi('transaksi_master', $data);
 		
-		 	 $data =  array('kd_transaksi' => $this->input->post('kd_transaksi') ,
-		 	 			'tanggal_transaksi' => $date,
-						'items' => $kdbarang,
-						);
-
-			 
-		 	$this->transaksi_model->create_transaksi('transaksi_master', $data);
-
-		
-
-	
 		echo json_encode(array('status' => TRUE ));
-		
 	
 		
 	}

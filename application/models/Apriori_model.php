@@ -14,14 +14,14 @@
 		public function read_db_transaksi(){ //count itemset 
 
 			$query = $this->db->query("select kd_transaksi from transaksi_master");
-			$arr = array();
+			/*$arr = array();
 			
 			foreach ($query->result() as $a) {
 				$arr[] = $a->kd_transaksi;
-			}
+			}*/
 			
 			 
-			return $arr;
+			return $query->result();
 		
 			
 		}
@@ -29,7 +29,7 @@
 		public function read_db_tdetail(){
 			$dt = array();
 			
-				$query = $this->db->query("select kd_barang, kd_transaksi from transaksi_detail ");
+				$query = $this->db->query("select barang.nama_barang, barang.kd_barang, transaksi_detail.kd_transaksi from transaksi_detail inner join barang on barang.kd_barang = transaksi_detail.kd_barang ");
 
 		
 
