@@ -38,7 +38,7 @@
                              <div class="col-md-9">
                                <select name="kd_barang[]" class="form-control">
                                 <?php foreach($barang as $barang){?>
-                                  <option value="<?= $barang->nama_barang ?>"><?= $barang->nama_barang?></option>
+                                  <option value="<?= $barang->kd_barang ?>"><?= $barang->nama_barang?></option>
                                 <?php } ?>
                                 </select>
                             </div>
