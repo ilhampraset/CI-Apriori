@@ -97,12 +97,14 @@ foreach($db as $db) {
 	
 }*/
 
-$q = $this->db->query('SELECT kd_transaksi  FROM transaksi_master ');
 $c =array();
 foreach ($td as $td) {
 	$c[]=$td['nama_barang'];
 }
-$bc = array();
+
+$q = $this->db->query('SELECT kd_transaksi  FROM transaksi_master ');
+
+
 $result = array();
 foreach ($q->result() as $key ) {
 	$query = $this->db->query("SELECT COUNT(kd_transaksi) AS cp FROM transaksi_detail WHERE kd_transaksi = '$key->kd_transaksi' ");
@@ -125,7 +127,7 @@ foreach ($q->result() as $key ) {
 
 	}
 
-	$bc[] = $result;
+	
 	
 }
 

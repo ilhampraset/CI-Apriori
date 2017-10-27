@@ -16,10 +16,17 @@
 
 		<p class="navbar-text">Anda login sebagai <?= $this->session->userdata('username') ?></p>
 
+
+
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 
 				
+				<li class="dropdown ">
+					<a href="<?= base_url('dashboar') ?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-cube fa-fw'></i> Dashboard <span class="caret"></span></a>
+					
+				</li>
+
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-shopping-cart fa-fw'></i> Penjualan <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -43,7 +50,7 @@
 				<li class="dropdown ">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class='fa fa-cube fa-fw'></i> Apriori <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="<?= base_url('apriorir/test')?>">Data Barang</a></li>
+						<li><a href="<?= base_url('apriorir/test')?>">Apriori</a></li>
 					</ul>
 				</li>
 								
