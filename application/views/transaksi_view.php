@@ -18,36 +18,38 @@
 
 <div class="container-fluid">
 	<div class="panel panel-default">
-		<div class="panel-body">
+
+		 <div data-toggle="collapse" data-target="#demo" class="panel-heading">Data Transaksi</div>
+		<div id='demo' class="panel-body collapse">
 
 		  <button type="button" id="btnSave" onclick="add_transaksi()" class="btn btn-primary">Tambah Transaksi</button><br><br>
-     
-       
-		 
+
+
+
 		    <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Kode Transaksi</th>
                     <th>Item</th>
-                        
+
                     <th style="width:200px;">Action</th>
                 </tr>
             </thead>
             <tbody>
-            
-            	<?php $no = 1; $kode; foreach ($transaksi as $transaksi) { ?>            	
+
+            	<?php $no = 1; $kode; foreach ($transaksi as $transaksi) { ?>
             	<tr>
             		<td><?= $no++ ?></td>
             		<td><?= $transaksi->kd_transaksi?></td>
             		<td><? $query = $this->db->query("select * from transaksi_detail inner join barang on transaksi_detail.kd_barang =  barang.kd_barang where kd_transaksi='$transaksi->kd_transaksi'  ORDER BY transaksi_detail.kd_barang ASC "); foreach($query->result() as $d){
-                           
+
                            echo $d->nama_barang."<br>" ;
 
                         }?></td>
             		<td>
-            			
-                                             
+
+
                        <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="delete_transaksi('<?=$transaksi->kd_transaksi?>')" title="Hapus"><i class="fa fa-remove"></i>Hapus</a>
                     </td>
             	</tr>
@@ -62,7 +64,89 @@
             </tr>
             </tfoot>
         </table>
-                   
+
+		</div>
+		<div data-toggle="collapse" data-target="#arules" class="panel-heading">Association Rules</div>
+		<div id='arules' class="panel-body collapse">
+
+			<?php
+
+			$this->apriori->setMaxScan(10);       //Scan 2, 3, ...
+			$this->apriori->setMinSup(2);         //Minimum support 1, 2, 3, ...
+			$this->apriori->setMinConf(50);       //Minimum confidence - Percent 1, 2, ..., 100
+			$this->apriori->setDelimiter(',');    //Delimiter
+
+
+
+
+
+
+
+			$c = array();
+			foreach ($td as $td) {
+				$c[]=$td['nama_barang'];
+			}
+
+			$q = $this->db->query('SELECT kd_transaksi  FROM transaksi_master ');
+
+
+			$result = array();
+			foreach ($q->result() as $key ) {
+				$query = $this->db->query("SELECT COUNT(kd_transaksi) AS cp FROM transaksi_detail WHERE kd_transaksi = '$key->kd_transaksi' ");
+					//$tmp = array();
+				foreach ($query->result() as $cp) {
+					//echo $cp->cp;
+
+					$ap = array();
+					//$count = count($cp->cp);
+					for ($i=0; $i < $cp->cp ; $i++) {
+					//$tmp =  array();
+						$ap[] = $c[$i];
+
+					 $result[] = $ap;
+					 //var_dump($g);
+					//$result[] = $tmp;
+					}
+
+
+
+				}
+
+
+
+			}
+
+
+		
+
+
+
+
+
+
+			$this->apriori->process($result);
+
+
+
+
+
+
+			echo '<h1>Association Rules</h1>';
+			echo " <table id='table' class='table table-striped table-bordered' cellspacing='0' width='80%'><th width='800'>Rule</th> <th>Confidend</th>";
+			$this->apriori->printAssociationRules();
+			echo "</table>";
+			// /echo '<h3>Association Rules Array</h3>';
+
+
+			//Save to file
+
+			?>
+
+
+		</div>
+		<div data-toggle="collapse" data-target="#disc" class="panel-heading">Discount</div>
+		<div id='disc' class="panel-body collapse">
+
 		</div>
 	</div>
 
@@ -77,11 +161,11 @@
     var save_method; //for save method string
     var table;
 
-   
+
 
     function addInput(divName){
 
-        
+
 
               var newdiv = document.createElement('div');
 
@@ -91,7 +175,7 @@
 
               counter++;
 
-         
+
 
     }
 
@@ -123,13 +207,13 @@
             $('[name="kd_barang"]').val(data.kd_barang);
             $('[name="nama_barang"]').val(data.nama_barang);
            	 $('[name="old_kode"]').val(data.kd_barang);
-              
 
-             
-            
-           
-           
-          
+
+
+
+
+
+
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit barang'); // Set title to Bootstrap modal title
 
@@ -153,7 +237,7 @@
       {
         url = "<?php echo site_url('barang/update')?>";
       }
- 
+
        // ajax adding data to database
          var formData = new FormData($('#form')[0]);
           $.ajax({

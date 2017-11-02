@@ -8,12 +8,12 @@ class Apriorir extends CI_Controller {
 		parent::__construct();
 
 		$this->load->library(array('session', 'form_validation'));
-		   
+
 		if ($this->session->userdata('username')=="" ) {
 			$this->session->sess_destroy();
 			redirect('auth');
 		}
-		
+
 
 		$this->load->model('transaksi_model');
 		//$this->load->model('barang_model');
@@ -24,18 +24,18 @@ class Apriorir extends CI_Controller {
 
 	public function index()
 	{
-	
+
 		$data = array();
 
         $query = $this->db->query("select kd_barang from barang");
 
 
         foreach ($query->result() as $a) {
-        	
-        
+
+
 		$data['items'] = $this->apriori_model->read_count_item($a->kd_barang);
 
-		
+
 		}
 
 		$this->load->view('count_item_view', $data);
