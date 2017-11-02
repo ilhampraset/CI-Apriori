@@ -1,5 +1,5 @@
 <style type="text/css">
-    
+
 
 </style>
 <div class="modal fade" id="modal_form" role="dialog">
@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body form">
                 <form method="POST" id="form">
-              
+
 
                      <div class="form-body">
                         <div class="form-group">
@@ -22,7 +22,7 @@
                                 <span class="help-block"></span>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                          <input type="hidden" value="" name="harga">
                             <label class="control-label col-md-3">Tanggal</label>
@@ -32,13 +32,13 @@
                             </div>
                         </div>
 
-                        
+
                          <div class="form-group" id="dynamicInput">
                             <label class="control-label col-md-3">Barang</label>
                              <div class="col-md-9">
                                <select name="kd_barang[]" class="form-control">
                                 <?php foreach($barang as $barang){?>
-                                  <option value="<?= $barang->kd_barang ?>"><?= $barang->nama_barang?></option>
+                                  <option value="<?= $barang->kd_barang ?>"><?=$barang->kd_barang.' - '.$barang->nama_barang?></option>
                                 <?php } ?>
                                 </select>
                             </div>
@@ -47,8 +47,8 @@
                          <br>
                        <div align="center">
                         <button type="button" class="btn btn-default btn-circle" onClick="addInput('dynamicInput');"><i class="glyphicon glyphicon-plus"></i> Tambah Barang</button></div>
-                     
-     
+
+
 
 </form>
             </div>

@@ -2,7 +2,7 @@
 
 	class Apriori_model extends CI_Model {
 
-	
+
  		public function read_transaction(){
  			$this->db->select('kd_transaksi');
  			$this->db->from('transaksi_detail');
@@ -11,29 +11,36 @@
 
  		}
 
-		public function read_db_transaksi(){ //count itemset 
+		public function read_db_transaksi(){ //count itemset
 
 			$query = $this->db->query("select kd_transaksi from transaksi_master");
 			/*$arr = array();
-			
+
 			foreach ($query->result() as $a) {
 				$arr[] = $a->kd_transaksi;
 			}*/
-			
-			 
+
+
 			return $query->result();
-		
-			
+
+
 		}
 
 		public function read_db_tdetail(){
 			$dt = array();
-			
-				$query = $this->db->query("select barang.nama_barang, barang.kd_barang, transaksi_detail.kd_transaksi from transaksi_detail inner join barang on barang.kd_barang = transaksi_detail.kd_barang ");
 
-		
+				$q = $this->db->query('select kd_transaksi from transaksi_master');
 
-			return $query->result_array() ;
+				foreach ($q->result() as $key) {
+					# code...
+
+				$query = $this->db->query("select  barang.kd_barang from transaksi_detail inner join barang on barang.kd_barang = transaksi_detail.kd_barang where transaksi_detail.kd_transaksi = '$key->kd_transaksi' ");
+				$dt[] = $query->result_array();
+			}
+
+
+
+			return $dt ;
 		}
 
 		public function create_transaksi($table, $data){

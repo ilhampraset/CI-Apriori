@@ -19,12 +19,12 @@
 <div class="container-fluid">
 	<div class="panel panel-default">
 		<div class="panel-body">
-<?php   
+<?php
 
 $this->apriori->setMaxScan(10);       //Scan 2, 3, ...
-$this->apriori->setMinSup(2);         //Minimum support 1, 2, 3, ...
-$this->apriori->setMinConf(75);       //Minimum confidence - Percent 1, 2, ..., 100
-$this->apriori->setDelimiter(',');    //Delimiter 
+$this->apriori->setMinSup(5);         //Minimum support 1, 2, 3, ...
+$this->apriori->setMinConf(50);       //Minimum confidence - Percent 1, 2, ..., 100
+$this->apriori->setDelimiter(',');    //Delimiter
 
 $dataa = array();
 $dataa[] = array('Lampu Depan');
@@ -45,7 +45,7 @@ $dataa[] = array('Lampu Depan', 'Oli Mesin');
 
 
 /*
-for ($i=0; $i <count($db) ; $i++) { 
+for ($i=0; $i <count($db) ; $i++) {
 	$queri = $this->db->query("SELECT barang.nama_barang, transaksi_detail.kd_transaksi, transaksi_detail.kd_barang FROM transaksi_detail INNER JOIN barang ON transaksi_detail.kd_barang=barang.kd_barang WHERE transaksi_detail.kd_transaksi = '$db[$i]' ");
 
 	foreach ( $queri->result_array() as $aa) {
@@ -57,10 +57,10 @@ for ($i=0; $i <count($db) ; $i++) {
 
 
 
-		
+
 	}
 
-	
+
 }
 
 */
@@ -69,7 +69,7 @@ foreach ($db as $db) {
 	$ab[]=$db->kd_transaksi;
 
 	$as = array();
-	
+
 }
 
 var_dump($td);
@@ -87,47 +87,17 @@ foreach($db as $db) {
 	$c =array();
 	//$c[] = $db->kd_transaksi;
 	foreach($td as $t) {
-		
-		
+
+
 			$num = count($t['kd_transaksi']);
 
 			echo $num;
-		
-	}	
-	
-}*/
-
-$q = $this->db->query('SELECT kd_transaksi  FROM transaksi_master ');
-$c =array();
-foreach ($td as $td) {
-	$c[]=$td['nama_barang'];
-}
-$bc = array();
-$result = array();
-foreach ($q->result() as $key ) {
-	$query = $this->db->query("SELECT COUNT(kd_transaksi) AS cp FROM transaksi_detail WHERE kd_transaksi = '$key->kd_transaksi' ");
-		//$tmp = array();
-	foreach ($query->result() as $cp) {
-		//echo $cp->cp;
-		
-		$ap = array();
-		//$count = count($cp->cp);
-		for ($i=0; $i < $cp->cp ; $i++) {
-		//$tmp =  array();
-		  $ap[] = $c[$i];
-
-		 $result[] = $ap;
-		 //var_dump($g);
-		//$result[] = $tmp; 
-		}
-
-		
 
 	}
 
-	$bc[] = $result;
-	
-}
+}*/
+
+
 
 //var_dump($result);
 
@@ -137,17 +107,17 @@ foreach ($q->result() as $key ) {
 
 
 //echo $result[0];
-// print join(',', $result[0]); 
+// print join(',', $result[0]);
 
 
 /*c =array();
 foreach ($td as $td) {
 	$c[]=$td['kd_barang'];
-}	
+}
 
 var_dump($c);
 
-$ap = array(); 
+$ap = array();
 echo "<br>";
 for($i=0; $i < 4 ;$i++){
 
@@ -157,6 +127,9 @@ for($i=0; $i < 4 ;$i++){
 echo implode(',', $ap);
 */
 
+
+echo "<br>Result<br>";
+//print_r($result);
 
 
 //echo implode(',', $ab);
@@ -172,12 +145,12 @@ foreach ($query->result() as $value) {
 
 
 /*$dataset   = array();
-$dataset[] = array('J001', 'J002', 'J004'); 
-$dataset[] = array('J001', 'J003', 'J004', 'J007');  
-$dataset[] = array('J004', 'J007'); 
-$dataset[] = array('J005', 'J004', 'J005'); 
+$dataset[] = array('J001', 'J002', 'J004');
+$dataset[] = array('J001', 'J003', 'J004', 'J007');
+$dataset[] = array('J004', 'J007');
+$dataset[] = array('J005', 'J004', 'J005');
 $dataset[] = array('J005', 'J004', 'J002');
-$dataset[] = array('J002', 'J004', 'J005'); 
+$dataset[] = array('J002', 'J004', 'J005');
 $a = array();
 $a[] =  array('a', 'b', 'c');
 $a[] =  array('a', 'b', 'c');
@@ -195,13 +168,13 @@ echo "<table id='table' class='table table-striped table-bordered' cellspacing='
 $no = 1 ;
 for($baris=0;$baris<count($dataa);$baris++)
 {
-	
+
 echo "<tr>";
-	echo "<td>". $no++."</td>";	
+	echo "<td>". $no++."</td>";
 echo "<td>";
  for($kolom=0;$kolom<count($dataa[$baris]);$kolom++)
  {
- 
+
  	$dataa[$baris][$kolom];
   echo $dataa[$baris][$kolom]."<br>";
 }
@@ -212,13 +185,25 @@ echo "<td>";
 
 echo "</table>";*/
 
-
-
-
-
+$test1 = array();
+$test1 = array('Kampas Kopling', 'oli mesin', 'kampas rem depan', 'ban depan');
+$test1[] = array('lampu belakang', 'oli mesin', 'oli gear', 'aki', 'busi');
+$test1[]= array('kampas rem depan', 'aki', 'air aki');
+$test1[] = array('oli mesin', 'oli gear', 'busi');
+$test1[] = array('Kampas Kopling', 'Tali Kopling', 'lampu depan', 'piston');
+$test1[] = array('lampu belakang', 'oli', 'mesin aki', 'air aki');
+$test1[] = array('Tali Kopling', 'lampu depan', 'lampu belakang', 'ban belakang', 'aki');
+$test1[] = array('Kampas Kopling', 'Tali Kopling', 'oli mesin', 'oli gear', 'kampas rem depan', 'ban depan');
+$test1[] = array('oli mesin', 'aki', 'air aki', 'busi');
+$test1[] = array('Kampas Kopling', 'oli mesin', 'oli gear', 'busi', 'piston', 'top set');
+$test1[]= array('oli mesin', 'oli gear', 'ban depan', 'busi');
+$test1[] = array('oli mesin','oli gear', 'air aki', 'busi', 'piston', 'top set');
 //var_dump($dataset);
 
-$this->apriori->process($result);
+echo '<br><br>';
+//print_r($test1);
+
+$this->apriori->process($da);
 
 
 //$Apriori->process('dataset.txt');
@@ -239,5 +224,5 @@ print_r($this->apriori->getAssociationRules()); */
 
 //Save to file
 
-?>  
+?>
 <?php $this->load->view('include/footer'); ?>
