@@ -16,7 +16,7 @@
 
 html { width: 100%; height:100%; overflow:hidden; }
 
-body { 
+body {
     width: 100%;
     height:100%;
     font-family: 'Open Sans', sans-serif;
@@ -28,7 +28,7 @@ body {
     background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104,128,138,.4) 10%,rgba(138,114,76,0) 40%), linear-gradient(to bottom,  rgba(57,173,219,.25) 0%,rgba(42,60,87,.4) 100%), linear-gradient(135deg,  #670d10 0%,#092756 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
-.login { 
+.login {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -38,9 +38,9 @@ body {
 }
 .login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
 
-input { 
-    width: 100%; 
-    margin-bottom: 10px; 
+input {
+    width: 100%;
+    margin-bottom: 10px;
     background: rgba(0,0,0,0.3);
     border: none;
     outline: none;
@@ -63,14 +63,14 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 </head>
 <body>
 <div class="login">
-    <h1>Sistem Penjualan Cv. Cm Jaya</h1>
+    <h1>Aplikasi Penjualan Cv. Cm Jaya</h1>
      <?php echo form_open('auth/cek_login')?>
         <input type="text" name="username" placeholder="Username" required="required" />
         <input type="password" name="password" placeholder="Password" required="required" />
         <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
     <?php echo form_close()?>
     <br>
-    
+
 <!-- login bootsnipp -->
 </div>
 </body>

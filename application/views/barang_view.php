@@ -20,26 +20,26 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 		  <button type="button" id="btnSave" onclick="add_barang()" class="btn btn-primary">Tambah Barang</button><br><br>
-		 
+
 		    <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>Kode Barang</th>
                     <th>Nama Barang</th>
-                   
+
                     <th style="width:200px;">Action</th>
                 </tr>
             </thead>
             <tbody>
-            	<?php $no = 1; foreach ($barang as $barang) { ?>            	
+            	<?php $no = 1; foreach ($barang as $barang) { ?>
             	<tr>
             		<td><?= $no++ ?></td>
             		<td><?= $barang->kd_barang?></td>
             		<td><?= $barang->nama_barang?></td>
             		<td>
             			<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_barang('<?=$barang->kd_barang?>')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-                                             
+
                        <a href="javascript:void(0)" class="btn btn-sm btn-danger" onclick="delete_barang('<?=$barang->kd_barang?>')" title="Hapus"><i class="fa fa-remove"></i>Hapus</a>
                     </td>
             	</tr>
@@ -96,13 +96,13 @@
             $('[name="kd_barang"]').val(data.kd_barang);
             $('[name="nama_barang"]').val(data.nama_barang);
            	 $('[name="old_kode"]').val(data.kd_barang);
-              
 
-             
-            
-           
-           
-          
+
+
+
+
+
+
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit barang'); // Set title to Bootstrap modal title
 
@@ -126,7 +126,7 @@
       {
         url = "<?php echo site_url('barang/update')?>";
       }
- 
+
        // ajax adding data to database
          var formData = new FormData($('#form')[0]);
           $.ajax({
@@ -177,4 +177,4 @@
   </script>
 
 
-<?php $this->load->view('include/footer'); ?>   
+<?php $this->load->view('include/footer'); ?>

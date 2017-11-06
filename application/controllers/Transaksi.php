@@ -54,11 +54,7 @@ class Transaksi extends CI_Controller {
 
 	}
 
-	public function destroy($id){
-		$this->transaksi_model->delete_transaksi_master($id);
-		$this->transaksi_model->delete_transaksi_detail($id);
-		echo json_encode(array("status" => TRUE));
-	}
+
 
 
 }

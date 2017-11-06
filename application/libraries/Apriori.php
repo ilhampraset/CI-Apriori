@@ -408,7 +408,6 @@ class Apriori {
     public function printFreqItemsets()
     {
 
-
        foreach($this->freqItmsts as $k => $v)
           {
              $tmp  = '';
@@ -463,6 +462,7 @@ class Apriori {
         file_put_contents($filename, $content);
     }
 
+
     public function getFreqItemsets()
     {
        $result = array();
@@ -487,19 +487,77 @@ class Apriori {
     public function printAssociationRules()
     {
 
+      $ci =& get_instance();
+    	$ci->load->database();
+    	$sql = "Select * from barang";
+    	$q = $ci->db->query($sql);
+
+
 
        foreach($this->rules as $a => $arr)
           {
+
              foreach($arr as $b => $conf)
                 {
+
+                  /*foreach ($q->result() as $key ) {
+                   if($a == $key->kd_barang OR explode(',', $a)== $key->kd_barang ){
+
                    echo "
                    <tr>
-                   <td>jika membeli <b>$a</b> maka disarankan membeli <b>$b</> maka mendapatkan discount 30%</td>  <td> $conf%</td>
+                   <td>jika membeli <b>$a = $key->nama_barang</b> maka disarankan membeli <b>$b =</b> maka mendapatkan discount 30%</td>  <td> $conf%</td>
                    <tr>
-                   ";
+                   ";}
+                 }*/
+
+                 echo "
+                 <tr>
+                 <td>jika membeli <b>$a </b> maka disarankan membeli <b>$b </b> maka mendapatkan discount 30%</td>  <td> $conf%</td>
+                 <tr>
+                 ";
                 }
           }
+
     }
+
+    function nama_barang($items)
+    {
+
+    	$pisah = explode(', ', $items);
+    	$ci =& get_instance();
+    	$ci->load->database();
+    	$sql = "Select * from barang";
+    	$q = $ci->db->query($sql);
+      //$result = '';
+    	$c = array();
+    	for($i=0;$i<count($pisah);$i++)
+    	{
+    		$tmp = '';
+    		foreach ($q->result() as $key) {
+
+    			if($key->kd_barang == $pisah[$i]){
+
+
+
+
+
+    				echo $key->nama_barang;
+    			 //print_r($b);
+    			 //echo $c;
+
+    			}
+
+    		}
+
+
+
+    	}
+    	//echo implode(', ', $c);
+
+
+
+    }
+
 
     public function saveAssociationRules($filename)
     {
@@ -533,4 +591,6 @@ class Apriori {
        $round   = pow(10, $round);
        return round($endtime*$round)/$round;
     }
+
+
 }
